@@ -4,6 +4,7 @@ function TextForm(props) {
     const handleUpClick =() =>{
         let newText = text.toLocaleUpperCase();
         setText(newText);
+        props.showAlert('convert to upper case', 'success');
     }
     const handleOnChange = (event) =>{
         setText(event.target.value);
