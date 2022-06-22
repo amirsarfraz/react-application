@@ -1,18 +1,24 @@
 import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
-// import About from './components/About';
+import About from './components/About';
 import { useState } from 'react';
-import Alert from './components/Alert';
+// import Alert from './components/Alert';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 function App() {
   const [mode, setMode] = useState('dark');
-  const [alert, setAlert] = useState(null);
+  // const [alert, setAlert] = useState(null);
  const showAlert = (message, type) => {
-setAlert({
-  meg: message,
-  type: type
-})
-  }
+// setAlert({
+//   meg: message,
+//   type: type
+// })
+   }
   const toggleMode = () =>{
     if(mode === 'light'){
       setMode('dark');
@@ -27,12 +33,20 @@ setAlert({
   }
   return (
 <>
+<Router>
 <Navbar title="amirsarfraz" mode={mode} toggleMode={toggleMode}/>
-<div className='container'>
-  <Alert alert={alert}/>
-<TextForm heading ="Enter the text to analiyze" mode={mode} />
-{/* <About /> */}
-</div>
+{/* <div className='container'> */}
+  {/* <Alert alert={alert}/> */}
+  <Switch>
+    <Route exact path="/about">
+      <About />
+      </Route>
+     <Route exact path="/">
+      <TextForm heading ="Enter the text to analiyze" mode={mode} />      
+          </Route>
+        </Switch>
+</Router>
+{/* </div> */}
 </>
   );
 }
